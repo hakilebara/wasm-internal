@@ -2,9 +2,11 @@ import * as React from "react";
 import { readULEB128 } from "./utils";
 import { Section } from "./Section";
 
-const VIEWER_WIDTH = 704;
-const BYTES_PER_ROW = 16;
-const BYTE_WIDTH = VIEWER_WIDTH/BYTES_PER_ROW;
+export const VIEWER_WIDTH = 704;
+export const BYTES_PER_ROW = 16;
+export const BYTE_WIDTH = VIEWER_WIDTH/BYTES_PER_ROW;
+
+const DEMO_WASM_FILE_PATH = "addint.wasm";
 
 const WASM_VERSION = 0x01000000;
 const WASM_MAGIC_NUMBER = 0x0061736d;
@@ -35,7 +37,7 @@ export function Viewer() {
   const [state, setState] = React.useState<{id:WasmSectionId,size:number,offset:number}[]>([{id:0, size:0, offset:0}]);
   React.useEffect(() => {
     const handleFetch = async () => {
-      const response = await fetch('addint.wasm');
+      const response = await fetch(DEMO_WASM_FILE_PATH);
       const buffer = await response.arrayBuffer();
       const buffer_length = buffer.byteLength;
 
@@ -78,7 +80,7 @@ export function Viewer() {
       <div className="p-2 m-2 inline-block bg-white rounded border-2">
         <ul style={{
           height: "704px",
-          width: "704px",
+          width: VIEWER_WIDTH,
         }} className="relative bg-white
                       bg-[radial-gradient(#aaa_1px,transparent_1px)]
                       [background-size:22px_22px]">
