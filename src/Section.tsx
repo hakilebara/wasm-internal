@@ -1,5 +1,8 @@
 import { type WasmSectionId } from "./App";
 
+const SECTION_HEIGHT = 24;
+const x_interspace = 2;
+
 export interface SectionProps {
   byte_width: number;
   size: number;
@@ -26,17 +29,25 @@ export function Section({ byte_width, size, offset, name, color, id, selectSecti
 
   return (
     chunks.map(({ size, offset }, index) => {
+      const row = Math.floor(offset / 16);
+      const col = (offset % 16);
+      const y_interspace = 2 * row;
       return (
         <li key={index}
-          className="absolute h-6 pl-1 cursor-pointer"
+          className={`absolute h-6 pl-1 cursor-pointer text-xs p-1 font-mono border-t border-b ${index === 0 ? "border-l" : ""} ${index === chunks.length -1 ? "border-r" : ""}`}
           onClick={handleClick}
           style={{
-            width: byte_width * size,
+            width: byte_width * size - x_interspace,
             backgroundColor: color,
-            left: (offset % 16)*byte_width,
-            top: Math.floor(offset/16) * 24,
+            left: col * byte_width,
+            top: (row * SECTION_HEIGHT) + y_interspace,
         }}>
-          {index === 0 ? name.toLocaleLowerCase() : null}
+          {(() => {
+            const isFirst = (index === 0);
+            const suffix = (id === 999) ? "" : " Section";
+            const section_name = name.charAt(0).toUpperCase() + name.slice(1).toLocaleLowerCase() + suffix
+            return (isFirst) ? section_name : null;
+          })()}
         </li>
       );
     })
