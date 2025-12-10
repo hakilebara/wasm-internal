@@ -1,17 +1,17 @@
-import * as React from "react";
+import { type WasmSectionId } from "./App";
 
 export interface SectionProps {
   byte_width: number;
   size: number;
   offset: number;
   name: string;
+  color: string;
+  id: WasmSectionId;
+  selectSection: Function;
 }
 
-export function Section({ byte_width, size, offset, name}: SectionProps) {
+export function Section({ byte_width, size, offset, name, color, id, selectSection}: SectionProps) {
   const chunks = [];
-  const color = `#${Math.floor(Math.random()*16).toString(16)}${Math.floor(Math.random()*16).toString(16)}${Math.floor(Math.random()*16).toString(16)}`;
-  const [bgc, setBgc] = React.useState<string>(color);
-
   while (size > 0) {
     const available_width = 16 - (offset % 16);
     const chunk_size = Math.min(available_width, size);
@@ -20,16 +20,19 @@ export function Section({ byte_width, size, offset, name}: SectionProps) {
     size -= chunk_size;
   }
 
+  const handleClick = () => {
+    selectSection(id);
+  }
+
   return (
     chunks.map(({ size, offset }, index) => {
       return (
-        <li key={index} 
-          onMouseEnter={() => {setBgc("red")}}
-          onMouseLeave={() => {setBgc(color)}}
-          className="absolute h-6 pl-1" 
+        <li key={index}
+          className="absolute h-6 pl-1 cursor-pointer"
+          onClick={handleClick}
           style={{
             width: byte_width * size,
-            backgroundColor: bgc,
+            backgroundColor: color,
             left: (offset % 16)*byte_width,
             top: Math.floor(offset/16) * 24,
         }}>

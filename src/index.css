@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+table td,
+table th {
+  padding: 0.25rem; /* p-1 = 0.25rem */
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+table th {
+  background-color: #f3f4f6; /* bg-gray-100 */
+  text-align: left;
+}

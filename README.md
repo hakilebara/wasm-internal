@@ -1,4 +1,4 @@
-# WASM Internal 
+# WASM Internal
 
 A Web based tool I am building to better understand the WebAssembly binary format
 
