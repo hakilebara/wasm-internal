@@ -10,7 +10,7 @@ const WASM_MAGIC_NUMBER = 0x0061736d;
 export const WASM_SECTIONS = {
   999: { name: "PREAMBLE", color: "#9cff94" },
   0:   { name: "CUSTOM",   color: "#a6cee3" },
-  1:   { name: "TYPE",     color: "#1f78b4" },
+  1:   { name: "TYPE",     color: "#93d3ff" },
   2:   { name: "IMPORT",   color: "#b2df8a" },
   3:   { name: "FUNCTION", color: "#33a02c" },
   4:   { name: "TABLE",    color: "#fb9a99" },
