@@ -7,7 +7,6 @@ const BYTES_PER_ROW = 16;
 const BYTE_WIDTH = VIEWER_WIDTH/BYTES_PER_ROW;
 
 export function Viewer({sectionList, selectSection}:{ sectionList:WasmSection[]|undefined, selectSection:Function }) {
-
   return (
     <div className="w-[850px] p-2 overflow-auto">
         <div className="p-2 m-2 border-2 rounded bg-white inline-block">
