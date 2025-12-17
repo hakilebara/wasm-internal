@@ -1,6 +1,6 @@
 import { Section } from "./Section";
-import { WASM_SECTIONS } from "./App";
-import type { WasmSection } from "./App";
+import { WASM_SECTIONS } from "./types";
+import type { WasmSection } from "./types";
 
 const VIEWER_WIDTH = 704;
 const BYTES_PER_ROW = 16;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { WasmSection } from "./App";
+import type { WasmSection } from "./types";
 import github from "./assets/github.svg";
 import { TypePanel } from "./TypePanel";
 
