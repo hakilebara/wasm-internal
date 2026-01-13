@@ -48,7 +48,8 @@ export default function App() {
         assertValidSectionId(id);
         const start_offset = offset;
         ++offset;
-        const { value:payload_size, offset:newOffset } = readULEB128(view, offset);
+        const bytes = new Uint8Array(view.buffer);
+        const { value:payload_size, offset:newOffset } = readULEB128(bytes, offset);
         const header_size = newOffset - start_offset;
         offset = newOffset + payload_size;
         const size = payload_size + header_size;

@@ -22,5 +22,5 @@ export interface WasmSection {
     id:WasmSectionId;
     size:number;
     offset:number;
-    payload:Uint8Array;
+    payload:Uint8Array<ArrayBuffer>;
 }
